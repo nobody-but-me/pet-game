@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/objects/egg.tscn" type="PackedScene" id=1]
+
+[node name="test" type="Node2D"]
+
+[node name="egg" parent="." instance=ExtResource( 1 )]
+position = Vector2( 40, 64 )
+
+[connection signal="mouse_entered" from="egg" to="egg" method="_on_egg_mouse_entered"]
+[connection signal="mouse_exited" from="egg" to="egg" method="_on_egg_mouse_exited"]
