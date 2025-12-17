@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sprites/frame-placeholder.png" type="Texture" id=1]
+[ext_resource path="res://scenes/game.tscn" type="PackedScene" id=2]
+
+[node name="frame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 147.0
+margin_top = 181.0
+margin_right = 604.0
+margin_bottom = 584.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="viewport_container" type="ViewportContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -186.0
+margin_top = -175.0
+margin_right = 201.0
+margin_bottom = 212.0
+
+[node name="Viewport" type="Viewport" parent="viewport_container"]
+size = Vector2( 387, 387 )
+own_world = true
+handle_input_locally = false
+disable_3d = true
+render_target_update_mode = 3
+audio_listener_enable_2d = true
+physics_object_picking = true
+
+[node name="game" parent="viewport_container/Viewport" instance=ExtResource( 2 )]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_lock_": true
+}

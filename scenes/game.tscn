@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/pet.tscn" type="PackedScene" id=1]
+
+[node name="game" type="Node2D"]
+
+[node name="pet" parent="." instance=ExtResource( 1 )]
+position = Vector2( 192, 191 )
