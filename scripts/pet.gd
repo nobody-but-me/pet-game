@@ -22,7 +22,7 @@ var speed=360
 var velocity:Vector2=Vector2(0.0,0.0)
 
 # TODO: find a better name for this variable; for now I don't really have a better idea for it
-var tmp:float=100.0
+var tmp:float=250.0
 
 func set_state(new_state)->void:
 	var _previous_state=current_state
@@ -46,17 +46,23 @@ func _ready()->void:
 
 func _physics_process(_delta:float)->void:
 	move_and_slide(velocity*_delta)
-#	if(current_state==States.Walking):
-#		var xaction=rand_range(-10.0,10.0)
-#		var yaction=rand_range(-10.0,10.0)
-#		velocity=Vector2(xaction*speed*_delta,yaction*speed*_delta)
+	return
+
+func choose_state()->void:
+	var x=randi()%2
+	match(x):
+		0:
+			set_state(States.Walking)
+		1:
+			set_state(States.Idling)
 	return
 
 func _input(_event:InputEvent)->void:
 	if(_event is InputEventMouseButton):
 		if(!_event.pressed && _event.button_index==BUTTON_LEFT):
 			is_dragging=false
-			set_state(States.Walking)
+#			set_state(States.Walking)
+			choose_state()
 		else:
 			var pos=_event.position
 			var spr_size=Vector2(sprite.scale.x*tmp,sprite.scale.y*tmp)
@@ -92,7 +98,11 @@ func _on_choosetimer_timeout():
 		var xaction=rand_range(-10.0,10.0)
 		var yaction=rand_range(-10.0,10.0)
 		velocity=Vector2(xaction*speed,yaction*speed)
+		
+		var stop=rand_range(-1.0,10.0)
+		if(stop<0.0):
+			set_state(States.Idling)
 	
 	var new_wait_time=rand_range(1.0,5.0)
 	choose_timer.wait_time=new_wait_time
-	
+
